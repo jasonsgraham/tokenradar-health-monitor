@@ -15,6 +15,10 @@ async def health():
 async def stats():
     return proxy_stats
 
+@app.get("/status")
+async def status():
+    return {"status": "running"}
+
 @app.middleware("http")
 async def track_requests(request: Request, call_next):
     proxy_stats["requests_served"] += 1
